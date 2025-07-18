@@ -32,12 +32,13 @@ def list_books_in_library(library_name):
 def get_librarian_for_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        if hasattr(library, 'librarian'):
-            print(f"\nLibrarian for '{library.name}': {library.librarian.name}")
-        else:
-            print(f"No librarian assigned to '{library_name}'.")
+        librarian = Librarian.objects.get(library=library)
+        print(f"\nLibrarian for '{library.name}': {librarian.name}")
     except Library.DoesNotExist:
         print(f"No library found with name '{library_name}'.")
+    except Librarian.DoesNotExist:
+        print(f"No librarian assigned to '{library_name}'.")
+
 
 
 if __name__ == "__main__":
