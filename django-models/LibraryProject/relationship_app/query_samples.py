@@ -1,7 +1,11 @@
 import os
+import sys
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+# Setup Django environment for standalone script
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LibraryProject.settings')
 django.setup()
 
 from relationship_app.models import Author, Book, Library, Librarian
@@ -45,6 +49,5 @@ if __name__ == "__main__":
     query_books_by_author("Tamirat Tezera")
     list_books_in_library("Central Library")
     get_librarian_for_library("Central Library")
-
 
 
