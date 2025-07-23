@@ -17,9 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+def test_home(request):
+    return HttpResponse("It works directly from project URLs!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('relationship/', include('relationship_app.urls')),
+    path('', test_home),  # test view for root path
+    path('relationship/', include('relationship_app.urls')),  # Your app routes
 ]
-
