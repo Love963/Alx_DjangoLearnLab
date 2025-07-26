@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required, login_required
 from .models import Book
 from .forms import BookForm
+from .forms import ExampleForm
+
 from django.http import HttpResponseForbidden
 from django.views.decorators.csrf import csrf_protect
 
@@ -75,3 +77,13 @@ def add_book_view(request):
     else:
         form = BookForm()
     return render(request, 'bookshelf/form_example.html', {'form': form})
+def example_form_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            # Normally you might save or process the data here
+            return redirect('list_books')  # or wherever you want
+    else:
+        form = ExampleForm()
+    return render(request, 'bookshelf/example_form.html', {'form': form})
+
