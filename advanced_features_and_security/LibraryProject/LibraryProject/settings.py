@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rbz2p=)%mrv!fydzu$j(f$y*c@k_=4y8%1gl+bs=p*g=1z^f(f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'LibraryProject.urls'
@@ -124,25 +125,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
+# XSS filter and no content sniffing
 SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+# Prevent clickjacking
 X_FRAME_OPTIONS = 'DENY'
-SECURE_CONTENET_TYPE_NOSNIFF = True
 
+# Cookies sent only over HTTPS
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 
+ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
 
-INSTALLED_APPS += ['csp']
-
-MIDDLEWARE += ['csp.middleware.CSPMiddleware']
-
-CONTENT_SECURITY_POLICY = {
-    "DIRECTIVES": {
-        "default-src": ("'self'",),
-        "style-src": ("'self'", "https://fonts.googleapis.com"),
-        "font-src": ("'self'", "https://fonts.gstatic.com"),
-        "script-src": ("'self'",),
-    }
-}
-
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com')
