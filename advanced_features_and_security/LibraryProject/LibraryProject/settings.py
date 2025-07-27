@@ -141,3 +141,19 @@ ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com')
+
+
+# Force all HTTP to HTTPS redirects
+SECURE_SSL_REDIRECT = True
+# Enforces HTTP Restrict Transport Security for 1 year
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMIANS = True
+SECURE_SSL_PRELOAD = True
+# Ensures cookies are only sent over HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Extra security headers
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
