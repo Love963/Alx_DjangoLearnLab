@@ -142,6 +142,8 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com')
 
+# Honor X-Forwarded-Proto header from reverse proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Redirect all HTTP traffic to HTTPS
