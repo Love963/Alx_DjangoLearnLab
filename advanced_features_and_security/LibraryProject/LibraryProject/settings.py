@@ -143,17 +143,22 @@ CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com')
 
 
-# Force all HTTP to HTTPS redirects
+
+# Redirect all HTTP traffic to HTTPS
 SECURE_SSL_REDIRECT = True
-# Enforces HTTP Restrict Transport Security for 1 year
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMIANS = True
-SECURE_SSL_PRELOAD = True
-# Ensures cookies are only sent over HTTPS
+
+# Use HSTS to force HTTPS for future requests
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Ensure cookies are only sent over HTTPS
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-# Extra security headers
+# Prevent clickjacking
 X_FRAME_OPTIONS = 'DENY'
+# Prevent content type sniffing
 SECURE_CONTENT_TYPE_NOSNIFF = True
+# Enable browser XSS protection
 SECURE_BROWSER_XSS_FILTER = True
