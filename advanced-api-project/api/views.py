@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-
+from rest_framework import generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from .models import Book
@@ -10,6 +11,21 @@ from .serializers import BookSerializer
 class BookListView(generics.ListAPIView):
     serializer_class = BookSerializer
     permission_classes = [permissions.AllowAny]
+    # Add filter backends
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+    ]
+    #  Filtering Fields
+    filterset_fields = ['title', 'author', 'publication_year']
+    # Search Fields
+    search_fields = ['title', 'author']
+    # Ordering Fields
+    ordering_fields = ['title', 'publication_year']
+    ordering = ['title']  # default ordering
+
+    
 
     def get_queryset(self):
         queryset = Book.objects.all()
