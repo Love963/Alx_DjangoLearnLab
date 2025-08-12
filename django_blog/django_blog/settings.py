@@ -130,3 +130,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
+
+MEDIA_URL = '/media/'  # Base URL for serving media files (uploaded avatars)
+MEDIA_ROOT = BASE_DIR / 'media'  # Directory where media files are stored locally
+
+LOGIN_REDIRECT_URL = 'profile'  # After login, redirect to the profile page
+LOGOUT_REDIRECT_URL = 'login'  # After logout, redirect to login page
