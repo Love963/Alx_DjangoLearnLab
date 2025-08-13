@@ -1,4 +1,5 @@
 from django import forms
+from .models import Post
 from django.contrib.auth.forms import UserCreationForm  # Built-in user registration form with password handling.
 from django.contrib.auth.models import User  # User model to create/update users
 from .models import Profile   # Import Profile for profile updates
@@ -29,6 +30,15 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile   # Update Profile model fields
         fields = ['bio', 'avatar']   # Editable bio and avatar image
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post                      # tie form to post model
+        fields = ['title', 'content']    # author set in view, not user editable
+
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 8})
+        }
 
 
 
