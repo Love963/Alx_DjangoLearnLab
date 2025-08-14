@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post
+from .models import Comment
 from django.contrib.auth.forms import UserCreationForm  # Built-in user registration form with password handling.
 from django.contrib.auth.models import User  # User model to create/update users
 from .models import Profile   # Import Profile for profile updates
@@ -37,11 +38,18 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content']    # author set in view, not user editable
 
         widgets = {
+            # Makes the textarea taller for better UX
             'content': forms.Textarea(attrs={'rows': 8})
         }
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']  # Only the comment content is entered by the user
 
-
-
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 4, 'placeholder':'Write your comment...'}),
+            # Textarea for better UX, placeholder guides the user
+        }
 
 
