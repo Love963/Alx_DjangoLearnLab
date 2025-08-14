@@ -13,7 +13,6 @@ from django.db.models import Q
 from taggit.models import Tag
 
 
-
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -132,12 +131,29 @@ def search_posts(request):
         ).distinct()
         return render(request, 'blog/search_results.html', {'posts': results, 'query': query})
 
-      
+    
+class PostByTagListView(ListView):
+    model = Post                         # Model to fetch objects from
+    template_name = 'blog/posts_by_tag.html'  # Template to render
+    context_object_name = 'posts'        # Variable name for template
+    paginate_by = 5                       # Optional: pagination
 
-def posts_by_tag(request, tag_slug):
-    tag = get_object_or_404(Tag, slug=tag_slug)
-    posts = Post.objects.filter(tags__in=[tag])
-    return render(request, 'blog/posts_by_tag.html', {'posts': posts, 'tag': tag})
+    def get_queryset(self):
+        """
+        Returns the list of posts filtered by the tag slug in the URL.
+        """
+        tag_slug = self.kwargs.get('tag_slug')           # Get slug from URL
+        tag = get_object_or_404(Tag, slug=tag_slug)     # Fetch the Tag object or return 404
+        return Post.objects.filter(tags__in=[tag])      # Filter posts by tag
+
+    def get_context_data(self, **kwargs):
+        """
+        Add extra context to the template.
+        """
+        context = super().get_context_data(**kwargs)
+        context['tag'] = get_object_or_404(Tag, slug=self.kwargs.get('tag_slug'))  # Pass tag object
+        return context
+
 
     
         

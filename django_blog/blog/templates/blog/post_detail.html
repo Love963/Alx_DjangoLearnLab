@@ -15,7 +15,6 @@
         {% endfor %}
     </p>
     {% endif %}
-
 </article>
 
 <!-- Post author actions -->
@@ -29,7 +28,8 @@
 <!-- Display comments -->
 <h3>Comments:</h3>
 {% for comment in post.comments.all %}
-    <p><strong>{{ comment.author.username }}:</strong> {{ comment.content|linebreaks }} <small>({{ comment.created_at|date:"Y-m-d H:i" }})</small></p>
+    <p><strong>{{ comment.author.username }}:</strong> {{ comment.content|linebreaks }} 
+       <small>({{ comment.created_at|date:"Y-m-d H:i" }})</small></p>
     {% if user == comment.author %}
         <a href="{% url 'comment-edit' comment.pk %}">Edit</a> |
         <a href="{% url 'comment-delete' comment.pk %}">Delete</a>
@@ -47,7 +47,3 @@
         <button type="submit">Post Comment</button>
     </form>
 {% else %}
-    <p><a href="{% url 'login' %}">Login</a> to add a comment.</p>
-{% endif %}
-
-{% endblock %}
