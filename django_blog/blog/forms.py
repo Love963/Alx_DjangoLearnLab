@@ -4,6 +4,7 @@ from .models import Comment
 from django.contrib.auth.forms import UserCreationForm  # Built-in user registration form with password handling.
 from django.contrib.auth.models import User  # User model to create/update users
 from .models import Profile   # Import Profile for profile updates
+from taggit.forms import TagWidget
 
 class UserRegisterForm(UserCreationForm):
     # Add email field to the registration field
@@ -34,8 +35,9 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class PostForm(forms.ModelForm):
     class Meta:
+        tags = forms.CharField(required=False, widget=TagWidget())
         model = Post                      # tie form to post model
-        fields = ['title', 'content']    # author set in view, not user editable
+        fields = ['title', 'content', 'tags']    # author set in view, not user editable
 
         widgets = {
             # Makes the textarea taller for better UX
