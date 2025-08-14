@@ -3,6 +3,7 @@ from django.contrib.auth.models import User     # Import User model for authors
 from django.db.models.signals import post_save  # signal triggered after saving a model instance
 from django.dispatch import receiver  # Decorator to register signal handlers
 from django.urls import reverse       # Build URLs dynamically from URL names
+from taggit.managers import TaggableManager
 # Create your models here.
 
 class Post(models.Model):
@@ -13,6 +14,7 @@ class Post(models.Model):
     # author link to User; cascade delete removes posts if user deleted
     # related_name allows user.posts.all() to fetch all posts by user
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-published_date']   # newest first in lists
