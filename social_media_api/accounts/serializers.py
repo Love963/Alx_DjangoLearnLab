@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
-    # Explicitly declare password as CharField for proper validation
+    # Explicit CharField for password
     password = serializers.CharField(write_only=True)
 
     class Meta:
@@ -13,14 +13,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ['username', 'email', 'password']
 
     def create(self, validated_data):
-        # Use create_user to hash password properly
-        user = User.objects.create_user(
+        # Use get_user_model().objects.create_user() as required
+        user = get_user_model().objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password']
         )
-        # Automatically create token
-        Token.objects.create(user=user)
+        Token.objects.create(user=user)  # Create token automatically
         return user
 
 class UserSerializer(serializers.ModelSerializer):
