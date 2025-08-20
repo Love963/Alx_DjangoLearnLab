@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('posts.urls')),  # Include your posts app URLs
-    path('accounts/', include('accounts.urls')),  # User auth endpoints
+    path('accounts/', include('accounts.urls')),
+    path('', include('posts.urls')), 
 ]
+
