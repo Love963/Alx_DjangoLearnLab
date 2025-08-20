@@ -41,11 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-<<<<<<< HEAD:social_media_api/settings.py
     'django_filters',      # for filtering
-=======
-    'django_filters',
->>>>>>> Implement posts and comments functionality with models, serializers, viewsets, permissions, pagination, and routing:social_media_api/social_media_api/settings.py
     'accounts',
     'posts',
 ]
@@ -61,7 +57,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     'DEFAULT_FILTER_BACKENDS': [
-<<<<<<< HEAD:social_media_api/settings.py
         'django_filters.rest_framework.DjangoFilterBackend',   # filtering
         'rest_framework.filters.SearchFilter',                 # search
         'rest_framework.filters.OrderingFilter',               # ordering
@@ -84,15 +79,6 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',               # ✅ ordering
     ],
 }
-=======
-        'django_filters.rest_framework.DjangoFilterBackend',
-        'rest_framework.filters.SearchFilter',
-        'rest_framework.filters.OrderingFilter',
-    ],
-}
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "testserver"]
->>>>>>> Implement posts and comments functionality with models, serializers, viewsets, permissions, pagination, and routing:social_media_api/social_media_api/settings.py
 
 
 MIDDLEWARE = [
@@ -177,3 +163,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
+

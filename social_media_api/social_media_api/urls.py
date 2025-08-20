@@ -19,13 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD:social_media_api/urls.py
     path('accounts/', include('accounts.urls')), 
     path('', include('posts.urls')),              
-=======
-    path('api/accounts/', include('accounts.urls')),  
-    path('api/', include('posts.urls')),             
->>>>>>> Implement posts and comments functionality with models, serializers, viewsets, permissions, pagination, and routing:social_media_api/social_media_api/urls.py
 ]
 
 
