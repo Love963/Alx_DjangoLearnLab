@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6fg*d#r@d98xph&4m$+ujb^nqksambr=z3_q&9s!aq=74#k153'
+SECRET_KEY = 'django-insecure-1w^0+=zs&g$bj$w!%^ss_f9_cw&^fi7sd*)b*#n!=qi46o#m@o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+<<<<<<< HEAD:social_media_api/settings.py
     'django_filters',      # for filtering
+=======
+    'django_filters',
+>>>>>>> Implement posts and comments functionality with models, serializers, viewsets, permissions, pagination, and routing:social_media_api/social_media_api/settings.py
     'accounts',
     'posts',
 ]
@@ -57,6 +61,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     'DEFAULT_FILTER_BACKENDS': [
+<<<<<<< HEAD:social_media_api/settings.py
         'django_filters.rest_framework.DjangoFilterBackend',   # filtering
         'rest_framework.filters.SearchFilter',                 # search
         'rest_framework.filters.OrderingFilter',               # ordering
@@ -79,6 +84,15 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',               # ✅ ordering
     ],
 }
+=======
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+}
+
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "testserver"]
+>>>>>>> Implement posts and comments functionality with models, serializers, viewsets, permissions, pagination, and routing:social_media_api/social_media_api/settings.py
 
 
 MIDDLEWARE = [
