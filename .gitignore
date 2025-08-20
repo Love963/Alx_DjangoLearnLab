@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+db.sqlite3
+social_media_api_backup/
